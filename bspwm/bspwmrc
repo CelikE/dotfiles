@@ -21,6 +21,7 @@ bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 bspc rule -add copyq state=floating
 
+setxkbmap -option grp:alt_shift_toggle us,dk &
 #### CUSTOM CONFIG ####
 feh --bg-fill $HOME/Downloads/wal3.png &
 . "${HOME}/.cache/wal/colors.sh"
