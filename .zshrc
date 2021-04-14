@@ -74,8 +74,6 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH='1'
 #export JAVA_HOME=/usr/lib/jvm/java-14-openjdk-amd64
 export JAVA_HOME=/usr/lib/jvm/java-15-openjdk-amd64
 export MAGICK_HOME=/usr/local/lib/ImageMagick-7.0.11
-#export _JAVA_AWT_WM_NONREPARENTING=1
-wmname LG3D &
 export SPICETIFY_INSTALL="/home/celik/spicetify-cli"
 export M2_HOME="/opt/apache/maven-3.8.1"
 export MVN="/opt/apache-maven-3.8.1/bin"
@@ -86,11 +84,6 @@ export PATH="$M2_HOME/bin:$PATH"
 export PATH="$MVN:$PATH"
 export PATH="$FLUTTER:$PATH"
 export PATH="$IDEA:$PATH"
-
-#export PATH="$MVN:$PATH"
-
-#imwheel
-imwheel &
 
 #PULSEAUDIO
 #pulseaudio --start
