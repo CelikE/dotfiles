@@ -35,19 +35,18 @@
 
 # Path to your oh-my-zsh installation.
   export ZSH=/home/celik/.oh-my-zsh
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="spaceship"
 ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir rbenv)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs status battery time)
 POWERLEVEL9K_CONTEXT_TEMPLATE=$'\ue795'
-POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='044'
-POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND='025'
-POWERLEVEL9K_USER_DEFAULT_FOREGROUND='201'
-POWERLEVEL9K_USER_DEFAULT_BACKGROUND='017'
+POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='201'
+POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND='017'
 POWERLEVEL9K_DIR_HOME_FOREGROUND='044'
 POWERLEVEL9K_DIR_HOME_BACKGROUND='025'
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='044'
@@ -71,31 +70,9 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH='1'
 # POWERLEVEL9K_BATTERY_ICON='\uf1e6 
 
 #export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-md64
-#export JAVA_HOME=/usr/lib/jvm/java-14-openjdk-amd64
-export JAVA_HOME=/usr/lib/jvm/java-15-openjdk-amd64
-export MAGICK_HOME=/usr/local/lib/ImageMagick-7.0.11
-export SPICETIFY_INSTALL="/home/celik/spicetify-cli"
-export M2_HOME="/opt/apache/maven-3.8.1"
-export MVN="/opt/apache-maven-3.8.1/bin"
-export FLUTTER="/home/celik/temp/flutter/bin"
-export IDEA="/usr/local/bin/idea"
-export PATH="$SPICETIFY_INSTALL:$PATH"
-export PATH="$M2_HOME/bin:$PATH"
-export PATH="$MVN:$PATH"
-export PATH="$FLUTTER:$PATH"
-export PATH="$IDEA:$PATH"
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 
-#PULSEAUDIO
-#pulseaudio --start
-alias sinks='pacmd list-sinks | grep -e 'name:' -e 'index:''
-function setsink { pacmd set-default-sink $@ }
 
-#configs
-alias bspwmrc='nvim ~/.config/bspwm/bspwmrc'
-alias picomrc='nvim ~/.config/picom/picom.conf'
-alias sxhkdrc='nvim ~/.config/sxhkd/sxhkdrc'
-alias polyrc='nvim ~/.config/polybar/config'
-alias cdpoly='cd ~/.config/polybar'
 alias upug='sudo apt update && sudo apt upgrade'
 alias ports='netstat -tulanp'
 alias h='history'
@@ -114,6 +91,13 @@ alias hs='history | grep $1'
 alias rm='rm -i'
 alias ping='ping -c 5'
 alias c='clear'
+
+#git
+alias gith='git for-each-ref --sort=-committerdate refs/heads/'
+
+#OC
+alias ocdev='oc login --username=emil.celik@sallinggroup.com https://dev.dsdigital.cloud'
+alias ocprod='oc login --username=emil.celik@sallinggroup.com https://prod.dsdigital.cloud'
 
 # apt
 alias install='sudo apt install'
@@ -135,6 +119,9 @@ alias ddown='docker-compose -f contrib/docker-compose.yml down'
 # Slack
 alias sp='slack --proxy-server=prx.dsg.dk:8080'
 
+# TEAMS
+alias tms='teams --proxy-server=prx.dsg.dk:8080'
+
 # Workspace change directory
 alias cdmc='cd ~/workspace/next/mc'
 alias cdbasket='cd ~/workspace/next/basket'
@@ -146,12 +133,19 @@ alias cdcnc='cd ~/workspace/next/click-and-collect'
 alias cdbacko='cd ~/workspace/next/backoffice'
 alias cdmagnolia='cd ~/workspace/next/magnolia-next'
 alias cdstock='cd ~/workspace/next/stock'
+alias cdfodel='cd ~/workspace/next/fo-delivery'
+alias cdfobasket='cd ~/workspace/next/fo-basket'
+alias cdfoorder='cd ~/workspace/next/fo-order'
+alias cdfodeposit='cd ~/workspace/next/fo-deposit'
 
 # java switch
 alias switchjava='sudo update-alternatives --config java'
 alias java8='export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64'
 alias java11='export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64'
 alias java14='export JAVA_HOME=/usr/lib/jvm/java-14-openjdk-amd64'
+alias java15='export JAVA_HOME=/usr/lib/jvm/java-15-openjdk-amd64'
+alias java16='export JAVA_HOME=/usr/lib/jvm/java-16-openjdk-amd64'
+alias java17='export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64'
 
 #rc's
 alias zshrc='vim ~/.zshrc'
@@ -161,8 +155,16 @@ alias vimrc='vim ~/.vimrc'
 alias reboot='sudo reboot'
 alias poweroff='sudo poweroff'
 
+# lazygit
+alias lg='lazygit'
+
 function encode() { echo -n $@ | perl -pe's/([^-_.~A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg'; }
 function google() { firefox http://www.google.com/search?hl=en#q="`encode $@`" ;}
+
+# Path
+export PATH="$PATH:/home/celik/dev/flutter/bin"
+export PATH=$PATH:~/go/bin
+
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -213,7 +215,8 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git bundler zsh-autosuggestions zsh-syntax-highlighting zsh-wakatime pip pyenv k sudo)
+plugins=(git bundler zsh-autosuggestions zsh-syntax-highlighting zsh-wakatime pip pyenv k sudo copydir dirhistory)
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -244,6 +247,5 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-(cat ~/.cache/wal/sequences &)
 
-source ~/.cache/wal/colors-tty.sh
+eval $(thefuck --alias)
