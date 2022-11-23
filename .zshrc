@@ -116,12 +116,6 @@ alias sbr='mvn spring-boot:run -Drun.jvmArguments="-XX:+ShowCodeDetailsInExcepti
 alias dup='docker-compose -f contrib/docker-compose.yml up'
 alias ddown='docker-compose -f contrib/docker-compose.yml down'
 
-# Slack
-alias sp='slack --proxy-server=prx.dsg.dk:8080'
-
-# TEAMS
-alias tms='teams --proxy-server=prx.dsg.dk:8080'
-
 # Workspace change directory
 alias cdmc='cd ~/workspace/next/mc'
 alias cdbasket='cd ~/workspace/next/basket'
