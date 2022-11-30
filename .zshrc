@@ -34,7 +34,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/celik/.oh-my-zsh
+export ZSH=/home/celik/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -42,7 +42,7 @@
 # ZSH_THEME="spaceship"
 ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs status battery time)
 POWERLEVEL9K_CONTEXT_TEMPLATE=$'\ue795'
 POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='201'
@@ -70,10 +70,10 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH='1'
 # POWERLEVEL9K_BATTERY_ICON='\uf1e6 
 
 #export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-md64
-export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
 
 
-alias upug='sudo apt update && sudo apt upgrade'
+alias upug='yay -Syy && yay -Syu'
 alias ports='netstat -tulanp'
 alias h='history'
 alias meminfo='free -m -l -t'
@@ -93,10 +93,10 @@ alias ping='ping -c 5'
 alias c='clear'
 
 #git
-alias gith='git for-each-ref --sort=-committerdate refs/heads/'
+alias gith='git for-each-ref --sort=committerdate refs/heads/'
 
 #OC
-alias ocdev='oc login --username=emil.celik@sallinggroup.com https://dev.dsdigital.cloud'
+alias ocdev='oc login --token=sha256~LLt4n6VIg_7o2S0OPDh9azKEkJEng-WORtu7dB6TPfU --server=https://api.ocp.preprod.sallinggroup.io'
 alias ocprod='oc login --username=emil.celik@sallinggroup.com https://prod.dsdigital.cloud'
 
 # apt
@@ -116,6 +116,12 @@ alias sbr='mvn spring-boot:run -Drun.jvmArguments="-XX:+ShowCodeDetailsInExcepti
 alias dup='docker-compose -f contrib/docker-compose.yml up'
 alias ddown='docker-compose -f contrib/docker-compose.yml down'
 
+# Slack
+alias sp='slack --proxy-server=prx.dsg.dk:8080'
+
+# TEAMS
+alias tms='teams --proxy-server=prx.dsg.dk:8080'
+
 # Workspace change directory
 alias cdmc='cd ~/workspace/next/mc'
 alias cdbasket='cd ~/workspace/next/basket'
@@ -123,7 +129,7 @@ alias cdprong='cd ~/workspace/next/pronghorn'
 alias cdcom='cd ~/workspace/next/communication'
 alias cdosenv='cd ~/workspace/next/stable-os-env'
 alias cdi3env='cd ~/workspace/next/stable-i3-env'
-alias cdcnc='cd ~/workspace/next/click-and-collect'
+alias cdcnc='cd ~/workspace/next/click-and-collect-v2'
 alias cdbacko='cd ~/workspace/next/backoffice'
 alias cdmagnolia='cd ~/workspace/next/magnolia-next'
 alias cdstock='cd ~/workspace/next/stock'
@@ -139,7 +145,7 @@ alias java11='export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64'
 alias java14='export JAVA_HOME=/usr/lib/jvm/java-14-openjdk-amd64'
 alias java15='export JAVA_HOME=/usr/lib/jvm/java-15-openjdk-amd64'
 alias java16='export JAVA_HOME=/usr/lib/jvm/java-16-openjdk-amd64'
-alias java17='export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64'
+alias java17='export JAVA_HOME=/usr/lib/jvm/java-17-openjdk'
 
 #rc's
 alias zshrc='vim ~/.zshrc'
@@ -155,9 +161,19 @@ alias lg='lazygit'
 function encode() { echo -n $@ | perl -pe's/([^-_.~A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg'; }
 function google() { firefox http://www.google.com/search?hl=en#q="`encode $@`" ;}
 
+export M2_HOME=/usr/local/apache-maven/apache-maven-3.8.6 
+export M2=$M2_HOME/bin 
+export PATH=$M2:$PATH
+
 # Path
 export PATH="$PATH:/home/celik/dev/flutter/bin"
 export PATH=$PATH:~/go/bin
+
+# Chrome
+export CHROME_EXECUTABLE=/usr/sbin/google-chrome-stable
+
+export ANDROID_HOME='/home/celik/Android/Sdk'
+export ANDROID_SDK_ROOT='/home/celik/Android/Sdk'
 
 
 # Set list of themes to load
@@ -209,7 +225,7 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git bundler zsh-autosuggestions zsh-syntax-highlighting zsh-wakatime pip pyenv k sudo copydir dirhistory)
+plugins=(git bundler zsh-autosuggestions zsh-syntax-highlighting pip pyenv k sudo dirhistory)
 
 source $ZSH/oh-my-zsh.sh
 
